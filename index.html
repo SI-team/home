@@ -52,9 +52,17 @@
         </div>
 	</div>
 
-	<audio id="my_audio" src="https://www.mboxdrive.com/1.m4a" loop="loop"></audio>
+<br>
+<center>
+<audio id="track">
+  <source src="https://www.mboxdrive.com/1.m4a" type="audio/mpeg" />
+</audio>
 
-	
+<div id="player-container">
+  <div id="play-pause" class="play">Play</div>
+</div>
+	</center>
+
 	<footer class="footer text-center ">
         <p>Hacked By Ibrahim Qadir</p>
     </footer>
@@ -70,9 +78,28 @@
 
   <script  src="./script.js"></script>
 <script>
-window.onload = function() {
-    document.getElementById("my_audio").play();
+
+var track = document.getElementById('track');
+
+var controlBtn = document.getElementById('play-pause');
+
+function playPause() {
+    if (track.paused) {
+        track.play();
+        //controlBtn.textContent = "Pause";
+        controlBtn.className = "pause";
+    } else { 
+        track.pause();
+         //controlBtn.textContent = "Play";
+        controlBtn.className = "play";
+    }
 }
+
+controlBtn.addEventListener("click", playPause);
+track.addEventListener("ended", function() {
+  controlBtn.className = "play";
+});
+
 </script>
 <br>
 
